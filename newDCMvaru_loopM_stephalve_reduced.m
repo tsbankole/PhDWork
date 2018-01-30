@@ -1,4 +1,10 @@
-%% Utilites
+%% This MAtlab script estimates parameters of A,B,C matrices from the following bilinear model
+% \dot{x} = Ax + \sum_{j=1}B_ju_jx + Cu
+%using the expectation maximization algorithm.
+% data must be provided where size(data) = [N, lenreading]
+% u must also be provided where size(u) = [lengthu, lenreading]
+% if some elements of matrix A are disallowed from taking non zero values, the set of indices must be provided in setA 
+% same follows for setB
 
 %% ismember check
 % idx = arrayfun(@(x)find(A==x,1),B);
@@ -43,45 +49,7 @@ vecparams = zeros(Lenvec,1);
 meanprior = vecparams;
 % %% Noisy missing preamble
 diffdata_old = [];
-% ind = zeros(size(data));
-% % win1 = 2*floor(lenreading/2)-1; %window for filtering
-% for n = 1:N
-%     temp = data(n,:);
-%     ttemp = t;
-%     p = find(isnan(temp)==true);
-%     if isempty(p)
-%         if noisy==1
-%         data(n,:) = smoothn(data(n,:));
-%         end
-%         continue
-%     end
-%     temp(p) = [];
-%     ttemp(p)=[];
-%
-%     switch noisy
-%         case 1
-%             win2 = 2*floor((lenreading-numel(p))/2)-1; %find the window for the filtering
-%             temp = smoothn(temp); % this requires the data to be identically spaced
-%         otherwise
-%     end
-%
-%     q = interp1(ttemp,temp,t(p),'pchip') ; %+ rand(size(t(p)))*eeps
-%
-%     ind(n,1:numel(p)) = p; %capture the indexes of the missing data
-%     data(n,p) = q;
-%     diffdata_old = [diffdata_old;q']; % concatenate missing data
-%     p = [0 p lenreadpone+1];
-%
-%     for k =1:numel(p)-1
-%         for j = p(k)+1:p(k+1)-1
-%             data(n,j)=temp(j-k+1);
-%         end
-%     end
-% end
 
-%% initialize A, B, vecparams
-% Ap = -rand(N);
-% A = [0 zn ; znt Ap];
 
 %% define A and B and obtain vecparams for reduced system
 A = zeros(N1);
@@ -184,6 +152,7 @@ if flag
 % Cthprior(elem_num1) = 0.001;
 % Cthprior(elem_num2) = 0.01;
 end
+
 %% Initialize variables for J matrix
 hwhole = zeros(sz,Lenvec);
 h = zeros(N1,lenreading);
@@ -249,7 +218,6 @@ while conv > tol
     count = 0;
 
     
-
     for j = 1:numsetB
         ar = ar_b(j);
         ac = ac_b(j);
