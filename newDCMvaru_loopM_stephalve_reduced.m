@@ -6,6 +6,8 @@
 % if some elements of matrix A are disallowed from taking non zero values, the set of indices must be provided in setA 
 % same follows for setB
 
+% see https://www.sciencedirect.com/science/article/pii/S1053811903002027 for literature
+
 %% ismember check
 % idx = arrayfun(@(x)find(A==x,1),B);
 runtime = zeros(20,1);
