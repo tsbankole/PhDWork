@@ -55,10 +55,7 @@ u = [u  Rv];
         xdot(1)=fv*(caf-ca)-k1*ca-k3*ca^2 + Rv*(car-ca);
         xdot(2)=-fv*cb+k1*ca-k2*cb + Rv*(cbr-cb);
         xdot(3)= vol_ratio*(fv +Rv)*(ca -car) ;
-        xdot(4)= vol_ratio*(fv +Rv)*(cb-cbr) ;
-        %         xdot(5)= x(5) - fv*molar_vol*((recov_ca * ca)+(recov_cb * cb))/(1-molar_vol*((recov_ca * ca)+(recov_cb * cb)));
-        %         xdot(6)= x(6) - (fv+Rv);
-        
+        xdot(4)= vol_ratio*(fv +Rv)*(cb-cbr) ;       
         xdot=xdot';
         
     end
