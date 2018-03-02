@@ -79,11 +79,11 @@ end
 
 figure(3)
 plot(normvec, 'b-*')
-legend('$\theta_{true} - \hat{\theta}$','Interpreter','latex')
+ylabel('$\|\theta_{true} - \hat{\theta}\|$','Interpreter','latex')
 
 figure(4)
-plot(currentdiff, 'b-*')
-legend('$y - \hat{y}$','Interpreter','latex')
+plot(curentdiff, 'b-*')
+ylabel('$\|y - \hat{y}\|$','Interpreter','latex')
 
 
 %
