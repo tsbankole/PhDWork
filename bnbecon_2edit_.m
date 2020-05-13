@@ -568,8 +568,8 @@ end
 
 
 %This is your objective function
-%flag2 defines rather the node is terminal or not, logical 1 or 0
-%flag defines rather the node has been upwardly branched or downwardly branched, 1 == upward branched, 0 == downward branched
+%flag2 defines whether the node is terminal or not, logical 1 or 0
+%flag defines whether the node has been upwardly branched or downwardly branched, 1 == upward branched, 0 == downward branched
 function [a,b]=Gc(f,c,as,bs,flag,flag2,cases,Gp,G_hat,Juu,YYT,mv,ny,nd)
 f = logical(f);
 c = logical(c);
